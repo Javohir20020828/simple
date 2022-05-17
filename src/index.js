@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDom from "react-dom/client";
+import Counter from "./components/Counter";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+class Ota extends React.Component {
+  constructor() {
+    super();
+    this.state = { son: 5, isDisplayCounter: true };
+  }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  propsniOzgartir = () => {
+    this.setState({ son: Math.random() });
+  };
+  displayniOzgartir = () => {
+    this.setState({ isDisplayCounter: !this.state.isDisplayCounter });
+  };
+  render() {
+    return (
+      <>
+        <h1>Ota Boshlanishi</h1>
+        <button onClick={this.propsniOzgartir}>Propsni o'zgartir</button>
+        <button onClick={this.displayniOzgartir}>Displayni o'zgartir</button>
+        {this.state.isDisplayCounter && <Counter sonProp={this.state.son} />}
+        <h1>Ota Tugashi </h1>
+      </>
+    );
+  }
+}
+
+
+const root = ReactDom.createRoot(document.getElementById("root"));
+root.render(<Ota />);
